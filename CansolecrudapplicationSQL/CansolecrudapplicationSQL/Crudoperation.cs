@@ -10,6 +10,7 @@ namespace CansolecrudapplicationSQL
     public class Crudoperation
     {
         private SqlConnection con = new SqlConnection("Data Source=MOBACK;DataBase=Employee;Integrated Security=True");
+        //creating method for create operation
         public void CreateUser()
         {
             try
@@ -19,7 +20,7 @@ namespace CansolecrudapplicationSQL
                 string userName = Console.ReadLine();
                 Console.Write("Enter Your Age : ");
                 int userAge = int.Parse(Console.ReadLine());
-                SqlCommand insertCmd = new SqlCommand("insert into UserDetails(User_Name,User_age) values('" + userName + "'," + userAge + ")", con);
+                SqlCommand insertCmd = new SqlCommand("SPINSERTDATA'" + userName + "'," + userAge + "", con);
                 insertCmd.ExecuteNonQuery();
                 Console.WriteLine("Data Will be successfully inserted into the table");
             }
@@ -32,12 +33,13 @@ namespace CansolecrudapplicationSQL
                 con.Close();
             }
         }
+        //creating method for retrive operation
         public void RetriveUser()
         {
             try
             {
                 con.Open();
-                SqlCommand displaCmd = new SqlCommand("Select * From UserDetails", con);
+                SqlCommand displaCmd = new SqlCommand("Select * From RetriveUserDetails", con);
                 SqlDataReader dr = displaCmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -56,6 +58,7 @@ namespace CansolecrudapplicationSQL
                 con.Close();
             }
         }
+        //creating method for update operation
         public void UpdateUser()
         {
             try
@@ -81,6 +84,7 @@ namespace CansolecrudapplicationSQL
                 con.Close();
             }
         }
+        //creating methpd fpr delete operation
         public void DeleteUser()
         {
             try
@@ -89,9 +93,9 @@ namespace CansolecrudapplicationSQL
                 int d_Id;
                 Console.Write("Enter Your id that you would like to delete : ");
                 d_Id = int.Parse(Console.ReadLine());
-                SqlCommand deleteCmd = new SqlCommand("Delete from UserDetails where User_Id = " + d_Id, con);
+                SqlCommand deleteCmd = new SqlCommand("SPDELETE" + d_Id, con);
                 deleteCmd.ExecuteNonQuery();
-                Console.WriteLine("record Deleted succesfully :");
+                Console.WriteLine("Record Deleted succesfully :");
             }
             catch (Exception e)
             {

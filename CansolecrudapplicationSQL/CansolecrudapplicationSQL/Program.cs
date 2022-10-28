@@ -13,7 +13,7 @@ namespace CansolecrudapplicationSQL
         {
             Crudoperation crudoperation = new Crudoperation();
             crudoperation.RetriveUser();
-           // crudoperation.CreateUser();
+            crudoperation.CreateUser();
             crudoperation.UpdateUser(); 
            // crudoperation.DeleteUser();
 
